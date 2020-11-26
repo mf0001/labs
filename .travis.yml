@@ -12,7 +12,7 @@ env:
   - secure: KxcoeW4LT9tmr9ysbzbQq2yd4MBNlAdHMoppulctZivdkPExaQsQyfMTJHKt/P0AhXzhQ/px3h9A0aCL3NklRizSrl5axPPoMOJXQj5LUCFtMDAG5GdGUOePvjZPvLtKH9bNo/yEOrCCziY5x7yQ8QNi/LA/dGsj6M02oAbeFnpCIzpml5epaVJwRNXmsUn8Oabv295kyy+/AAjlLBGny5De8SGf9XpVrwadr7DK0514mb81ZExmzCyBo2U8lQ3t4/+HOeb+JWw3ls67sGPv2cbW3MztRpI+MKYGsKAFF/bXsbeoke2GqWR9Wf/IARUcFV3TzP6zj3GxfLyjuYdXpeYOxdbP2+RZixWmyZOC2LGpM8yr8RIm94bwnxnltNjj06tbmlWk2Uasxk15njx7Cx2w8I7mm9pxDrpQVkH7U8M0StuAcZfH56M+pdPLwEJ7yCVmWtMwSR8Omu1sqlL6llxc0xxX9kn1j7A7fsHu1b4h6gt1F/QhkZG1m4fuY5IDR/A278zF218SKuMEDC3uHICD02vtq+ejPU1oHT5FSo3igqt2wGdWoR2merqFssm2q/wiIrejmnYy0WvYqZ8f7SZiEKo3S1c27r3440VF1B+IHssMZnbnUKB205twXS/rHwVhL8FVLeTAYGPK3l6FA0k9EuFL+8q7K1IXWkHwUHI=
   - COMMIT=${TRAVIS_COMMIT::7}
 script:
-- "./mvnw clean install -B"
+  - mvn clean package
 after_success:
 - docker login -u $DOCKER_USER -p $DOCKER_PASS
 - export TAG=`if [ "$TRAVIS_BRANCH" == "master" ]; then echo "latest"; else echo "$TRAVIS_BRANCH";
