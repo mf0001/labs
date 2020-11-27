@@ -14,7 +14,7 @@ import java.util.List;
 @RestController
 @RequestMapping(value = ProductController.REST_URL, produces = MediaType.APPLICATION_JSON_VALUE)
 public class ProductController {
-    public static final String REST_URL = "/api/v1/products";
+    public static final String REST_URL = "/api/v1/product";
 
     private final ProductService productService;
 
@@ -39,6 +39,13 @@ public class ProductController {
     public Product save(@RequestBody Product product) {
         log.info("save " + product);
         return productService.save(product);
+    }
+
+    @PostMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public Product update(@RequestBody Product product, @PathVariable Long id) {
+        log.info("update id=" + id + " product=" + product);
+        product.setId(id);
+        return productService.update(product);
     }
 
     @DeleteMapping("/{id}")

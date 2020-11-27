@@ -33,6 +33,14 @@ public class ProductServiceImp implements ProductService {
     }
 
     @Override
+    public Product update(Product product) {
+        if (productRepository.existsById(product.getId())) {
+            return productRepository.save(product);
+        }
+        return null;
+    }
+
+    @Override
     public void delete(Long id) {
         productRepository.delete(id);
     }
